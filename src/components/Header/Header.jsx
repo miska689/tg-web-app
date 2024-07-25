@@ -12,7 +12,7 @@ const Header = () => {
     return (
         <div>
             <Button onClick={onClose}>Close</Button>
-            <h1 className={'username'}>{ tg.initDataUnsafe?.user?.username }</h1>
+            <h1 className={'username'}>{ JSON.stringify(tg.initDataUnsafe?.user) }</h1>
         </div>
     );
 };
