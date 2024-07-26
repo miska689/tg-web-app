@@ -12,7 +12,9 @@ const App = () => {
         <div>
             <div className="App">
                 <div className="app-flex">
-                    <div className="app-content"></div>
+                    <div className="app-content">
+                        {tg.themeParams}
+                    </div>
                     <Header></Header>
                 </div>
             </div>
