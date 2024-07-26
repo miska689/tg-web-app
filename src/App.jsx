@@ -1,5 +1,10 @@
 import React, {useEffect} from 'react';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
+import Regs from "./components/Regs/Regs";
+import Admin from "./components/Admin/Admin";
+import Settings from "./components/Settings/Settings";
 import './App.css'
 
 const App = () => {
@@ -24,16 +29,23 @@ const App = () => {
     }, []);
 
     return (
+        <BrowserRouter>
         <div>
             <div className="App">
                 <div className="app-flex">
                     <div className="app-content">
-                        <h1></h1>
+                        <Routes>
+                            <Route path="/" element={<Home/>} />
+                            <Route path="/reg" element={<Regs/>} />
+                            <Route path="/set" element={<Settings/>} />
+                            <Route path="/admin" element={<Admin/>} />
+                        </Routes>
                     </div>
                     <Header></Header>
                 </div>
             </div>
         </div>
+        </BrowserRouter>
     );
 };
 

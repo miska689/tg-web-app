@@ -28,16 +28,22 @@
     align-items: center;
     padding: 20px;
     width: 100%;
+
 }
 
 .list-item {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     cursor: pointer;
     transition: all ease-in-out .3s;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     width: 20%;
+    list-style: none;
+}
+
+.link-com{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
 }
 
 .link-item {
@@ -58,3 +64,4 @@
     border:none;
     border-radius: 2px;
 }
+

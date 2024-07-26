@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ListItem = () => {
+const Admin = () => {
     return (
         <div>
-            
+            Admin
         </div>
     );
 };
 
-export default ListItem;
+export default Admin;

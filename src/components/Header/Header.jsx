@@ -3,6 +3,7 @@ import { FaHome } from "react-icons/fa";
 import { BiTask } from "react-icons/bi";
 import { RiAdminLine } from "react-icons/ri";
 import { IoIosSettings } from "react-icons/io";
+import { Link } from "react-router-dom";
 import './Header.css'
 
 const Header = () => {
@@ -34,37 +35,45 @@ const Header = () => {
                             className={"list-item " + (selected === "home" ? "active" : "")}
                             onClick={selectItem("home")}
                         >
-                            <div className="icon-fill">
-                                <FaHome className={"icon"} size={iconSize} />
-                            </div>
-                            <a href="#" className="link-item">Home</a>
+                            <Link to={"/"} className={"link-com"}>
+                                <div className="icon-fill">
+                                    <FaHome className={"icon"} size={iconSize} />
+                                </div>
+                                <a href="#" className="link-item">Home</a>
+                            </Link>
                         </li>
                         <li
                             className={"list-item " + (selected === "regs" ? "active" : "")}
                             onClick={selectItem("regs")}
                         >
-                            <div className="icon-fill">
-                                <BiTask className="icon" size={iconSize} />
-                            </div>
-                            <a href="#" className="link-item">Regs</a>
+                            <Link to={"/reg"} className={"link-com"}>
+                                <div className="icon-fill">
+                                    <BiTask className="icon" size={iconSize} />
+                                </div>
+                                <a href="#" className="link-item">Regs</a>
+                            </Link>
                         </li>
                         <li
                             className={"list-item " + (selected === "set" ? "active" : "")}
                             onClick={selectItem("set")}
                         >
-                            <div className="icon-fill">
-                                <IoIosSettings className={"icon"} size={iconSize} />
-                            </div>
-                            <a href="#" className="link-item">Settings</a>
+                            <Link to={"/set"} className={"link-com"}>
+                                <div className="icon-fill">
+                                    <IoIosSettings className={"icon"} size={iconSize} />
+                                </div>
+                                <a href="#" className="link-item">Settings</a>
+                            </Link>
                         </li>
                         <li
                             className={"list-item " + (selected === "admin" ? "active" : "")}
                             onClick={selectItem("admin")}
                         >
-                            <div className="icon-fill">
-                                <RiAdminLine className="icon" size={iconSize} />
-                            </div>
-                            <a href="#" className="link-item">Admin</a>
+                            <Link to={"/admin"} className={"link-com"}>
+                                <div className="icon-fill">
+                                    <RiAdminLine className="icon" size={iconSize} />
+                                </div>
+                                <a href="#" className="link-item">Admin</a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
