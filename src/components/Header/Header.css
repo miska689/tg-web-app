@@ -30,8 +30,8 @@
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-    transition: all ease-in-out 1s;
-
+    transition: all ease-in-out .3s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .link-item {
