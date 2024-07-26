@@ -6,6 +6,7 @@ const App = () => {
         const telegram = window.Telegram.WebApp;
         const themeParams = telegram.themeParams;
 
+        themeParams.secondary_bg_color = "black";
         themeParams.bg_color = "black";
 
         document.body.style.backgroundColor = themeParams.bg_color || 'black';
