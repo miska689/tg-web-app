@@ -36,7 +36,7 @@ const App = () => {
 
     const loginFetch = async (user, url) => {
        try{
-           const response = user ? await fetch(url, {
+           const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const App = () => {
                     telegram_user_id: user?.id,
                     username: user?.username,
                 })
-            }) : {};
+            });
 
             if(response.ok){
                 const data = await response.json();
