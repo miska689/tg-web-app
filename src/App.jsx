@@ -3,8 +3,7 @@ import Header from "./components/Header/Header";
 
 const tg = window.Telegram.WebApp
 
-tg.ThemeParams.bg_color = "#000"
-tg.ThemeParams.secondary_bg_color = "#000"
+console.log(tg)
 
 const App = () => {
     useEffect(() => {
