@@ -1,0 +1,23 @@
+*, *:before, *:after {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+html,body {
+    background: #000;
+}
+
+
+.container{
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+
+.app-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}

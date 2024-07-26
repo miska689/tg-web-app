@@ -1,7 +1,9 @@
 import React, {useEffect} from 'react';
 import Header from "./components/Header/Header";
+import './App.css'
 
 const App = () => {
+
     useEffect(() => {
         const telegram = window.Telegram.WebApp;
         const themeParams = telegram.themeParams;
