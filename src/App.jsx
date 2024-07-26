@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
@@ -8,6 +8,8 @@ import Settings from "./components/Settings/Settings";
 import './App.css'
 
 const App = () => {
+    const [token, setToken] = useState(null);
+    const [num, setNum] = useState(0);
 
     useEffect(() => {
         const telegram = window.Telegram.WebApp;
@@ -20,31 +22,60 @@ const App = () => {
         document.body.style.color = themeParams.text_color || 'white';
 
         const secondaryBackground = document.querySelector('.secondary-background');
+
         if (secondaryBackground) {
             secondaryBackground.style.backgroundColor = themeParams.secondary_bg_color || 'black';
         }
+
         telegram.setHeaderColor("#000");
+
+        setToken(loginFetch(telegram?.initDataUnsafe?.user, 'http://45.137.148.149:5000/api/login'))
 
         telegram.ready()
     }, []);
+
+    const loginFetch = async (user, url) => {
+       try{
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                telegram_user_id: user.id,
+                username: user?.username,
+            })
+        })
+
+        if(response.ok){
+            const data = response.json();
+
+            return data.token;
+        } else {
+            return null;
+        }
+        } catch (e) {
+           console.error(e);
+       }
+    }
 
     return (
         <BrowserRouter>
         <div>
             <div className="App">
                 <div className="app-flex">
-                    <div className="lol">
-                        {JSON.stringify(window.Telegram.WebApp.initDataUnsafe)}
+                    <div className="div">
+                        {JSON.stringify(token)}
                     </div>
                     <div className="app-content">
                         <Routes>
-                            <Route path="/" element={<Home/>} />
-                            <Route path="/reg" element={<Regs/>} />
-                            <Route path="/set" element={<Settings/>} />
-                            <Route path="/admin" element={<Admin/>} />
+                            <Route path="/" element={<Home token={token}/>} />
+                            <Route path="/reg" element={<Regs token={token}/>} />
+                            <Route path="/set" element={<Settings token={token}/>} />
+                            <Route path="/admin" element={<Admin token={token}/>} />
                         </Routes>
                     </div>
-                    <Header></Header>
+                    {token ? (<Header></Header>) : null}
                 </div>
             </div>
         </div>
