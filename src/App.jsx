@@ -17,7 +17,7 @@ const App = () => {
             <div className="App">
                 <div className="app-flex">
                     <div className="app-content">
-
+                        <h1 style={"color: var(--tg-theme-secondary-bg-color);"}>Lol</h1>
                     </div>
                     <Header></Header>
                 </div>
