@@ -16,6 +16,8 @@ const App = () => {
         if (secondaryBackground) {
             secondaryBackground.style.backgroundColor = themeParams.secondary_bg_color || 'black';
         }
+        telegram.setHeaderColor("#000");
+
         telegram.ready()
     }, []);
 
