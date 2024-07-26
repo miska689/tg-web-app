@@ -62,7 +62,7 @@ const App = () => {
             <div className="App">
                 <div className="app-flex">
                     <div className="div">
-                        {JSON.stringify(token)}
+                        {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
                     </div>
                     <div className="app-content">
                         <Routes>
