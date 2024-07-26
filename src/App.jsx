@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import useSWR from "swr";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Regs from "./components/Regs/Regs";
@@ -7,13 +8,29 @@ import Admin from "./components/Admin/Admin";
 import Settings from "./components/Settings/Settings";
 import './App.css'
 
+
 const App = () => {
     const [token, setToken] = useState(null);
-    const [num, setNum] = useState(0);
 
-    useEffect(() => {
-        const telegram = window.Telegram.WebApp;
-        const themeParams = telegram.themeParams;
+    const postTokenFetch = (data) => {
+        return url => fetch(url, data).then(res => res.json())
+    }
+
+    const telegram = window.Telegram.WebApp;
+    const themeParams = telegram.themeParams;
+
+    const { data, error } = useSWR("http://45.137.148.149:5000/api/login", postTokenFetch({
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            telegram_user_id: telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.id : 12,
+            username: telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.id : "ImpeRo678",
+        })
+    }));
+
+    useEffect( () => {
 
         themeParams.header_bg_color = "black";
         themeParams.bg_color = "black";
@@ -29,37 +46,18 @@ const App = () => {
 
         telegram.setHeaderColor("#000");
 
-        setToken(loginFetch(telegram?.initDataUnsafe?.user, 'http://45.137.148.149:5000/api/login'))
-
         telegram.ready()
     }, []);
 
-    const loginFetch = async (user, url) => {
-       try{
-           const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    telegram_user_id: user?.id,
-                    username: user?.username,
-                })
-            });
 
-            if(response.ok){
-                const data = await response.json();
-                setToken(data.token)
-            }
-       } catch (e) {
-           console.error(e);
-       }
-    }
 
     return (
         <BrowserRouter>
         <div>
             <div className="App">
+                {data ? (
+                    <div className={"lol"}> {data.token}</div>
+                ) : (<div className={"lol"}>{JSON.stringify(error)}</div>)}
                 <div className="app-flex">
                     <div className="div">
                         {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
