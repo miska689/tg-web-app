@@ -11,7 +11,10 @@ const App = () => {
     return (
         <div>
             <div className="App">
-                <Header></Header>
+                <div className="app-flex">
+                    <div className="app-content"></div>
+                    <Header></Header>
+                </div>
             </div>
         </div>
     );
