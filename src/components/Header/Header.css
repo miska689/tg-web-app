@@ -10,6 +10,11 @@
     align-items: center;
 }
 
+.secondary-background{
+    background: black;
+
+}
+
 .list-item {
     display: flex;
     align-items: center;
