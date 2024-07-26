@@ -25,8 +25,8 @@ const App = () => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            telegram_user_id: telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.id : 12,
-            username: telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.id : "ImpeRo678",
+            telegram_user_id: telegram.initDataUnsafe.user.id,
+            username: telegram.initDataUnsafe.user.username,
         })
     }));
 
