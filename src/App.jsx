@@ -36,25 +36,22 @@ const App = () => {
 
     const loginFetch = async (user, url) => {
        try{
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                telegram_user_id: user.id,
-                username: user?.username,
-            })
-        })
+           const response = user ? await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    telegram_user_id: user?.id,
+                    username: user?.username,
+                })
+            }) : {};
 
-        if(response.ok){
-            const data = response.json();
-
-            return data.token;
-        } else {
-            return null;
-        }
-        } catch (e) {
+            if(response.ok){
+                const data = await response.json();
+                setToken(data.token)
+            }
+       } catch (e) {
            console.error(e);
        }
     }
