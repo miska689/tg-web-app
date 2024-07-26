@@ -33,6 +33,9 @@ const App = () => {
         <div>
             <div className="App">
                 <div className="app-flex">
+                    <div className="lol">
+                        {JSON.stringify(window.Telegram.WebApp.initDataUnsafe)}
+                    </div>
                     <div className="app-content">
                         <Routes>
                             <Route path="/" element={<Home/>} />
