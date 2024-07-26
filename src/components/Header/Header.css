@@ -19,7 +19,7 @@
 
 .list-item .link-item {
     text-decoration: none;
-    color: rgb(136, 136, 136);
+    color: var(--tg-theme-secondary-bg-color);
     font-family: "Ubuntu", sans-serif;
     font-weight: 300;
     font-style: normal;
