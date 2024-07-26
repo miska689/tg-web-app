@@ -25,8 +25,8 @@ const App = () => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            telegram_user_id: 731920710,
-            username: "ImpeRo678",
+            telegram_user_id: telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user : 731920710,
+            username: telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.username : "ImpeRo678",
         })
     }));
 
@@ -45,10 +45,8 @@ const App = () => {
         }
 
         telegram.setHeaderColor("#000");
-
         telegram.ready()
     }, []);
-
 
 
     return (
@@ -57,7 +55,7 @@ const App = () => {
             <div className="App">
                 {data ? (
                     <div className={"lol"}> {data.token}</div>
-                ) : (<div className={"lol"}>{JSON.stringify(error)}</div>)}
+                ) : (<div className={"lol"}>{error}</div>)}
                 <div className="app-flex">
                     <div className="div">
                         {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
