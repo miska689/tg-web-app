@@ -42,7 +42,7 @@
     font-style: normal;
     font-size: 15px;
     transition: all ease-in-out .3s;
-
+    -webkit-tap-highlight-color: transparent; /* Elimina conturul albastru pe dispozitivele mobile */
 }
 
 .devider {
