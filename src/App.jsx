@@ -19,7 +19,7 @@ const App = () => {
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
 
-    const { data, error } = useSWR("https://mytestserver/api/api/login", postTokenFetch({
+    const { data, error } = useSWR("https://mytestserver.bot.nu/api/api/login", postTokenFetch({
         method: "POST",
         headers: {
             "Content-Type": "application/json",
