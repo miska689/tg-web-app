@@ -23,6 +23,8 @@ const App = () => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': 'https://mytestserver.bot.nu/api/',
+
         },
         body: JSON.stringify({
             telegram_user_id: telegram.initDataUnsafe?.user,
