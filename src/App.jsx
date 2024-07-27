@@ -19,14 +19,14 @@ const App = () => {
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
 
-    const { data, error } = useSWR("http://45.137.148.149:5000/api/login", postTokenFetch({
+    const { data, error } = useSWR("https://mytestserver/api/login", postTokenFetch({
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            telegram_user_id: telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user : 731920710,
-            username: telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.username : "ImpeRo678",
+            telegram_user_id: telegram.initDataUnsafe.user,
+            username: telegram.initDataUnsafe.user,
         })
     }));
 
