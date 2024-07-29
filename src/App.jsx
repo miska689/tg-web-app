@@ -56,6 +56,7 @@ const App = () => {
         <BrowserRouter>
         <div>
             <div className="App">
+                {token ? token : " "}
                 <div className="app-flex">
                     <div className="div">
                         {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
