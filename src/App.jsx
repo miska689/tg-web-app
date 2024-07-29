@@ -56,9 +56,6 @@ const App = () => {
         <BrowserRouter>
         <div>
             <div className="App">
-                {data ? (
-                    <div className={"lol"}> {data.token}</div>
-                ) : (<div className={"lol"}>{error}</div>)}
                 <div className="app-flex">
                     <div className="div">
                         {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
@@ -71,7 +68,7 @@ const App = () => {
                             <Route path="/admin" element={<Admin token={token}/>} />
                         </Routes>
                     </div>
-                    {token ? (<Header></Header>) : null}
+                    <Header></Header>
                 </div>
             </div>
         </div>
