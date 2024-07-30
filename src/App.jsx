@@ -20,7 +20,8 @@ const App = () => {
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
 
-    const { data, error } = telegram ? useSWR("https://mytestserver.bot.nu/api/login", postTokenFetch({
+
+    const { data, error, isLoading } = telegram.initDataUnsafe.id ? useSWR("https://mytestserver.bot.nu/api/login", postTokenFetch({
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -30,8 +31,7 @@ const App = () => {
             username: telegram.initDataUnsafe?.user,
         })
     })) : {
-        data : "Not Token",
-        error: 'no token provided'
+        token: undefined
     };
 
     useEffect( () => {
@@ -53,15 +53,15 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        console.log(data, error)
+        setToken(data.token)
     }, [data, error]);
 
 
-    return (
+    return isLoading ? (
         <BrowserRouter>
         <div>
             <div className="App">
-                {token ? token : " "}
+                {token ? token : "Tokenul nu a fost primit"}
                 <div className="app-flex">
                     <div className="div">
                         {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
@@ -79,6 +79,10 @@ const App = () => {
             </div>
         </div>
         </BrowserRouter>
+    ) : (
+        <div>
+            Asteptati
+        </div>
     );
 };
 
