@@ -21,7 +21,7 @@ const App = () => {
     const themeParams = telegram.themeParams;
 
 
-    const { data, error, isLoading } = telegram.initDataUnsafe.id ? useSWR("https://mytestserver.bot.nu/api/login", postTokenFetch({
+    const { data, error, isLoading } = telegram.initDataUnsafe.user.id ? useSWR("https://mytestserver.bot.nu/api/login", postTokenFetch({
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const App = () => {
         <BrowserRouter>
         <div>
             <div className="App">
-                {data.token ? data.token : "Tokenul nu a fost primit"}
+                {data?.token}
                 <div className="app-flex">
                     <div className="div">
                         {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
