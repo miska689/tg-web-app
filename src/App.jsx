@@ -58,6 +58,10 @@ const App = () => {
 
 
     return isLoading ? (
+      <div>
+          Ateptati!
+      </div>
+    ) : (
         <BrowserRouter>
         <div>
             <div className="App">
@@ -79,10 +83,6 @@ const App = () => {
             </div>
         </div>
         </BrowserRouter>
-    ) : (
-        <div>
-            Asteptati
-        </div>
     );
 };
 
