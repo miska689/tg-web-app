@@ -7,6 +7,7 @@ import Admin from "./components/Admin/Admin";
 import Settings from "./components/Settings/Settings";
 import './App.css'
 import axios from "axios";
+import Register from "./components/Register/Register";
 
 const App = () => {
     const [token, setToken] = useState("null");
@@ -54,24 +55,29 @@ const App = () => {
         window.location.reload()
     }
 
+    const registerFetch = () => {
+
+    }
+
     return (
         <BrowserRouter>
         <div>
             <div className="App">
-                {token}
+
                 <div className="app-flex">
-                    <div className="div">
-                        <button onClick={printToken}>LoL</button>
-                    </div>
+                    {/*<div className="div">*/}
+                    {/*    /!*<button onClick={printToken}>LoL</button>*!/*/}
+                    {/*</div>*/}
                     <div className="app-content">
                         <Routes>
                             <Route path="/" element={<Home token={token}/>} />
                             <Route path="/reg" element={<Regs token={token}/>} />
                             <Route path="/set" element={<Settings token={token}/>} />
                             <Route path="/admin" element={<Admin token={token}/>} />
+                            <Route path="/register" element={<Register/>} />
                         </Routes>
                     </div>
-                    <Header></Header>
+                    {/*<Header></Header>*/}
                 </div>
             </div>
         </div>
