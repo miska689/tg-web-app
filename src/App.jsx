@@ -52,11 +52,6 @@ const App = () => {
         telegram.ready()
     }, []);
 
-    useEffect(() => {
-        console.log(data)
-    }, [data, error]);
-
-
     return isLoading ? (
       <div>
           Ateptati!
