@@ -20,7 +20,7 @@ const App = () => {
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
 
-    const { data, error } = useSWR("https://mytestserver.bot.nu/api/login", postTokenFetch({
+    const { data, error } = telegram ? useSWR("https://mytestserver.bot.nu/api/login", postTokenFetch({
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -29,7 +29,10 @@ const App = () => {
             telegram_user_id: telegram.initDataUnsafe?.user,
             username: telegram.initDataUnsafe?.user,
         })
-    }));
+    })) : {
+        data : "Not Token",
+        error: 'no token provided'
+    };
 
     useEffect( () => {
 
