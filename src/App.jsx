@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import useSWR from "swr";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Regs from "./components/Regs/Regs";
 import Admin from "./components/Admin/Admin";
 import Settings from "./components/Settings/Settings";
 import './App.css'
-
-// salut
+import axios from "axios";
 
 const App = () => {
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState("null");
 
     const postTokenFetch = (data) => {
         return url => fetch(url, data).then(res => res.json())
@@ -21,20 +19,20 @@ const App = () => {
     const themeParams = telegram.themeParams;
 
 
-    const { data, error, isLoading } = telegram.initDataUnsafe.user.id ? useSWR("https://mytestserver.bot.nu/api/login", postTokenFetch({
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            telegram_user_id: telegram.initDataUnsafe?.user,
-            username: telegram.initDataUnsafe?.user,
-        })
-    })) : {
-        token: undefined
-    };
-
     useEffect( () => {
+
+        axios.post('https://mytestserver.bot.nu/api/login', {
+            "telegram_user_id": telegram.initDataUnsafe.user?.id,
+            "username": telegram.initDataUnsafe.user?.username
+        }).then(res => {
+            const tok = res.data.token
+
+            setToken(tok);
+        }).catch(err => {
+            console.log(err);
+        })
+
+
 
         themeParams.header_bg_color = "black";
         themeParams.bg_color = "black";
@@ -52,18 +50,18 @@ const App = () => {
         telegram.ready()
     }, []);
 
-    return isLoading ? (
-      <div>
-          Ateptati!
-      </div>
-    ) : (
+    const printToken = () => {
+        window.location.reload()
+    }
+
+    return (
         <BrowserRouter>
         <div>
             <div className="App">
-                {data?.token}
+                {token}
                 <div className="app-flex">
                     <div className="div">
-                        {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
+                        <button onClick={printToken}>LoL</button>
                     </div>
                     <div className="app-content">
                         <Routes>
