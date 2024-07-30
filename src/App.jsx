@@ -8,6 +8,7 @@ import Admin from "./components/Admin/Admin";
 import Settings from "./components/Settings/Settings";
 import './App.css'
 
+// salut
 
 const App = () => {
     const [token, setToken] = useState(null);
@@ -50,6 +51,10 @@ const App = () => {
         telegram.setHeaderColor("#000");
         telegram.ready()
     }, []);
+
+    useEffect(() => {
+        setToken(data.token)
+    }, [data]);
 
 
     return (
