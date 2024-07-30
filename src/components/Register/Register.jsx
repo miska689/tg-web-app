@@ -17,7 +17,7 @@ const Register = () => {
             "telegram_user_id": telegram.initDataUnsafe.user?.id,
             "telegram_chat_id": telegram.initDataUnsafe.user?.id,
             "username": telegram.initDataUnsafe.user?.username,
-            "adminPassword": password,
+            "adminPassword": password
         }).then(res => {
             console.log(res.data)
         }).catch(err => {
