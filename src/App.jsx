@@ -53,7 +53,7 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        setToken(data.token)
+        console.log(data)
     }, [data]);
 
 
