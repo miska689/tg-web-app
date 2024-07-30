@@ -53,7 +53,7 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        setToken(data.token)
+        console.log(data)
     }, [data, error]);
 
 
@@ -61,7 +61,7 @@ const App = () => {
         <BrowserRouter>
         <div>
             <div className="App">
-                {token ? token : "Tokenul nu a fost primit"}
+                {data.token ? data.token : "Tokenul nu a fost primit"}
                 <div className="app-flex">
                     <div className="div">
                         {JSON.stringify(window.Telegram.WebApp.initDataUnsafe.user)}
