@@ -24,9 +24,6 @@ const App = () => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': 'https://mytestserver.bot.nu/api/',
-            'Access-Control-Allow-Methods': 'GET, POST, DELETE',
-            'Access-Control-Allow-Credentials': 'true',
         },
         body: JSON.stringify({
             telegram_user_id: telegram.initDataUnsafe?.user,
@@ -53,8 +50,8 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        console.log(data)
-    }, [data]);
+        console.log(data, error)
+    }, [data, error]);
 
 
     return (
