@@ -13,11 +13,11 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await axios.post('https://mytestserver.bot.nu/api/register', {
-            "telegram_user_id": telegram.initDataUnsafe.user?.id,
-            "telegram_chat_id": telegram.initDataUnsafe.user?.id,
-            "username": telegram.initDataUnsafe.user?.username,
-            "adminPassword": password
+        await axios.post('https://mytestserver.bot.nu/api/appointment', {
+            "email": "dasdasdasdas",
+            "phone": "123211312",
+            "date": Date.now(),
+            "serviceId": 1
         }).then(res => {
             console.log(res.data)
         }).catch(err => {

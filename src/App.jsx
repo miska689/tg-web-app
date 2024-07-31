@@ -74,7 +74,7 @@ const App = () => {
                             <Route path="/reg" element={<Regs token={token}/>} />
                             <Route path="/set" element={<Settings token={token}/>} />
                             <Route path="/admin" element={<Admin token={token}/>} />
-                            <Route path="/register" element={<Register/>} />
+                            <Route path="/register" element={<Register  />} />
                         </Routes>
                     </div>
                     {/*<Header></Header>*/}
