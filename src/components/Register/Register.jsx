@@ -32,7 +32,7 @@ const Register = () => {
                     <div className="img"></div>
                     <div className="username">
                         <h1 className={"tg-username"}>
-                            {user ? user.username : "Username"}
+                            Username
                         </h1>
                     </div>
                 </div>
