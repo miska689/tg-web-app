@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Regs from "./components/Regs/Regs";
@@ -8,9 +8,12 @@ import Settings from "./components/Settings/Settings";
 import './App.css'
 import axios from "axios";
 import Register from "./components/Register/Register";
+import {useNavigation} from "react-router-dom";
 
 const App = () => {
     const [token, setToken] = useState(null);
+
+    const navigation = useNavigate();
 
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
@@ -23,14 +26,12 @@ const App = () => {
             "username": telegram.initDataUnsafe.user?.username
         }).then(res => {
             const tok = res.data.token
-
+            console.log(token)
             setToken(tok);
         }).catch(err => {
-            console.log(err);
+            navigation('/register')
         })
 
-
-        console.log(token)
         themeParams.header_bg_color = "black";
         themeParams.bg_color = "black";
 
