@@ -10,11 +10,7 @@ import axios from "axios";
 import Register from "./components/Register/Register";
 
 const App = () => {
-    const [token, setToken] = useState("null");
-
-    const postTokenFetch = (data) => {
-        return url => fetch(url, data).then(res => res.json())
-    }
+    const [token, setToken] = useState(null);
 
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
@@ -34,7 +30,7 @@ const App = () => {
         })
 
 
-
+        console.log(token)
         themeParams.header_bg_color = "black";
         themeParams.bg_color = "black";
 
@@ -51,13 +47,6 @@ const App = () => {
         telegram.ready()
     }, []);
 
-    const printToken = () => {
-        window.location.reload()
-    }
-
-    const registerFetch = () => {
-
-    }
 
     return (
         <BrowserRouter>
@@ -74,10 +63,10 @@ const App = () => {
                             <Route path="/reg" element={<Regs token={token}/>} />
                             <Route path="/set" element={<Settings token={token}/>} />
                             <Route path="/admin" element={<Admin token={token}/>} />
-                            <Route path="/register" element={<Register  />} />
+                            <Route path="/register" element={<Register  token={token}/>} />
                         </Routes>
                     </div>
-                    {/*<Header></Header>*/}
+                    {token ? (<Header></Header>) : (<div></div>)}
                 </div>
             </div>
         </div>

@@ -2,8 +2,15 @@ import React from 'react';
 import {useState} from "react";
 import './Register.css'
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-const Register = () => {
+const Register = (props) => {
+    const navigation = useNavigate();
+
+    if (props.token){
+        navigation('/')
+    }
+
     const [password, setPassword] = useState('');
 
     const telegram = window.Telegram.WebApp;
@@ -13,16 +20,18 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await axios.post('https://mytestserver.bot.nu/api/appointment', {
-            "email": "dasdasdasdas",
-            "phone": "123211312",
-            "date": Date.now(),
-            "serviceId": 1
+        await axios.post('https://mytestserver.bot.nu/api/register', {
+            "telegram_user_id": user?.id,
+            "telegram_chat_id": user?.id,
+            "username": user?.username,
+            "password": password,
         }).then(res => {
-            console.log(res.data)
+            console.log(res)
+            navigation('/')
         }).catch(err => {
             console.log(err)
         })
+
     };
 
     return (
@@ -32,7 +41,7 @@ const Register = () => {
                     <div className="img"></div>
                     <div className="username">
                         <h1 className={"tg-username"}>
-                            Username
+                            {user ? user.username : "Username"}
                         </h1>
                     </div>
                 </div>
