@@ -52,7 +52,7 @@ const App = () => {
     }, []);
 
 
-    return (status > 200 && status < 499) ? (
+    return (status >= 200 && status <= 499) ? (
         <BrowserRouter>
         <div>
             <div className="App">
