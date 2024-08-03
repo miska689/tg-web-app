@@ -6,7 +6,10 @@ const generateSecretKey = (telegramBotToken, c_str = "WebAppData") => {
 
 const validate = (initData, secretKey) => {
     const { hash, ...data } = initData;
-    const sortedData = Object.keys(data).sort().map(key => `${key}=${data[key]}`).join('\n');
+    const sortedData = Object.keys(data)
+        .sort()
+        .map(key => `${key}=${typeof data[key] === 'object' ? JSON.stringify(data[key]) : data[key]}`)
+        .join('\n');
     const dataCheck = CryptoJS.HmacSHA256(sortedData, secretKey).toString();
     console.log(sortedData);
     console.log(dataCheck)
