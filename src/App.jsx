@@ -25,8 +25,9 @@ const App = () => {
             "username": user?.username,
         }).then(res => {
             const postRes = res.data;
+            const postStatus = res.status;
             console.log(res);
-            setStaus(res.status)
+            setStaus(postStatus)
             setLogin(postRes.isOk)
         }).catch(err => {
             console.log("Inregistrativa!");
