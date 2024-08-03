@@ -11,7 +11,7 @@ import Admin from "./components/Admin/Admin";
 import Header from "./components/Header/Header";
 
 const App = () => {
-    const [isLogin, setLogin] = useState(null);
+    const [isLogin, setLogin] = useState(false);
     const [status, setStaus] = useState(1)
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
