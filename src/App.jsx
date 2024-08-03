@@ -31,7 +31,7 @@ const App = () => {
             setLogin(postRes.isOk)
         }).catch(err => {
             const postStatus = err.status;
-            console.log("Inregistrativa!");
+            console.log(err, "Inregistrativa!");
             setStaus(postStatus)
         })
 
