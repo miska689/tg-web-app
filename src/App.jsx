@@ -72,9 +72,9 @@ const App = () => {
         {/*    </div>*/}
         {/*</div>*/}
             <div className="data">
-                {isValid}
+                Key: {isValid}
                 <br/>
-                {JSON.stringify(user)}
+                User: {JSON.stringify(user)}
             </div>
         </BrowserRouter>
     );
