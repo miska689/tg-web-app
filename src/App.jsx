@@ -11,25 +11,13 @@ import Register from "./components/Register/Register";
 import {generateSecretKey, validate} from "./telegramUtils/utils";
 
 const App = () => {
-    const [token, setToken] = useState(null);
-    const [user, setUser] = useState(null);
-    const [isValid, setIsValid] = useState(false);
 
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
 
 
     useEffect( () => {
-        const initData = window.Telegram.WebApp.initDataUnsafe;
-        const telegramBotToken = '7365160249:AAFwBQd3hHr5upOSyHW5B1zDWV6ec7baG5Y';
-        const secretKey = generateSecretKey(telegramBotToken);
-
-        if (validate(initData, secretKey)) {
-            setIsValid(true);
-            setUser(initData.user);
-        } else {
-            setIsValid(false);
-        }
+        axios.defaults.headers.common['Telegram-Data'] = window?.Telegram?.WebApp?.initData;
 
         themeParams.header_bg_color = "black";
         themeParams.bg_color = "black";
@@ -42,6 +30,11 @@ const App = () => {
         if (secondaryBackground) {
             secondaryBackground.style.backgroundColor = themeParams.secondary_bg_color || 'black';
         }
+
+        axios.get('https://mytestserver.bot.nu/api/service')
+            .then(res => {
+                console.log(res);
+            }).catch(err => console.log(err));
 
         telegram.setHeaderColor("#000");
         telegram.ready()
@@ -71,11 +64,6 @@ const App = () => {
         {/*        </div>*/}
         {/*    </div>*/}
         {/*</div>*/}
-            <div className="data">
-                Key: {isValid}
-                <br/>
-                User: {JSON.stringify(user)}
-            </div>
         </BrowserRouter>
     );
 };
