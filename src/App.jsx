@@ -21,7 +21,7 @@ const App = () => {
         }).then(res => {
             const postRes = res.data;
 
-            setLogin(postRes.isLogin)
+            setLogin(postRes.isOk)
         }).catch(err => {
             console.log("Inregistrativa!");
         })
