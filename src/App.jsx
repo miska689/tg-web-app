@@ -59,7 +59,7 @@ const App = () => {
         <div>
             <div className="App">
                 <div className="app-flex">
-                    { JSON.stringify({isLogin}) }
+                    {/*{ JSON.stringify({isLogin}) }*/}
                     <Routes>
                         <Route path="/" element={isLogin ? <Home/> : <Navigate to={'/register'}/>}/>
                         <Route path="/reg" element={isLogin ? <Regs/> : <Navigate to={'/register'}/>}/>
