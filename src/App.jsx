@@ -1,23 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
-import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
-import Regs from "./components/Regs/Regs";
-import Admin from "./components/Admin/Admin";
-import Settings from "./components/Settings/Settings";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import './App.css'
 import axios from "axios";
-import Register from "./components/Register/Register";
-import {generateSecretKey, validate} from "./telegramUtils/utils";
+import UserProfile from "./components/userProfile/userProfile";
 
 const App = () => {
+    const [isLogin, setLogin] = useState(false);
 
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
-
+    const user = telegram.initDataUnsafe.user;
 
     useEffect( () => {
         axios.defaults.headers.common['Telegram-Data'] = window?.Telegram?.WebApp?.initData;
+
+        axios.post('https://mytestserver.bot.nu/api/login', {
+            "telegram_user_id": user?.id,
+            "username": user?.username,
+        }).then(res => {
+            const postRes = res.data;
+
+            setLogin(postRes.isLogin)
+        }).catch(err => {
+            console.log("Inregistrativa!");
+        })
+
 
         themeParams.header_bg_color = "black";
         themeParams.bg_color = "black";
@@ -31,39 +38,24 @@ const App = () => {
             secondaryBackground.style.backgroundColor = themeParams.secondary_bg_color || 'black';
         }
 
-        axios.get('https://mytestserver.bot.nu/api/service')
-            .then(res => {
-                console.log(res);
-            }).catch(err => console.log(err));
+
 
         telegram.setHeaderColor("#000");
         telegram.ready()
     }, []);
 
 
-
     return (
         <BrowserRouter>
-        {/*<div>*/}
-        {/*    <div className="App">*/}
-        {/*            */}
-        {/*        <div className="app-flex">*/}
-        {/*            /!*<div className="div">*!/*/}
-        {/*            /!*    /!*<button onClick={printToken}>LoL</button>*!/*!/*/}
-        {/*            /!*</div>*!/*/}
-        {/*            <div className="app-content">*/}
-        {/*                <Routes>*/}
-        {/*                    <Route path="/" element={<Home token={token}/>} />*/}
-        {/*                    <Route path="/reg" element={<Regs token={token}/>} />*/}
-        {/*                    <Route path="/set" element={<Settings token={token}/>} />*/}
-        {/*                    <Route path="/admin" element={<Admin token={token}/>} />*/}
-        {/*                    <Route path="/register" element={<Register  token={token}/>} />*/}
-        {/*                </Routes>*/}
-        {/*            </div>*/}
-        {/*            {token ? (<Header></Header>) : (<div></div>)}*/}
-        {/*        </div>*/}
-        {/*    </div>*/}
-        {/*</div>*/}
+        <div>
+            <div className="App">
+                <div className="app-flex">
+                    <Routes>
+                        <Route path="/" element={isLogin ? <UserProfile /> : <Navigate to="/register" replace/>} />
+                    </Routes>
+                </div>
+            </div>
+        </div>
         </BrowserRouter>
     );
 };
