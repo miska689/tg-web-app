@@ -16,11 +16,13 @@ const Register = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log(password)
+
         await axios.post('https://mytestserver.bot.nu/api/register', {
             "telegram_user_id": user?.id,
             "telegram_chat_id": user?.id,
             "username": user?.username,
-            "password": password,
+            "adminPassword": password,
         }).then(res => {
             console.log(res)
             navigation('/')
