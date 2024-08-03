@@ -63,8 +63,8 @@ const App = () => {
                         <Route path="/set" element={<Settings/>}/>
                         <Route path="/admin" element={<Admin/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Header></Header>
                     </Routes>
+                    <Header></Header>
                 </div>
             </div>
         </div>
