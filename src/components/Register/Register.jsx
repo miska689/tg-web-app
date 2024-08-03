@@ -21,16 +21,20 @@ const Register = (props) => {
             "username": user?.username,
             "adminPassword": password,
         }).then(res => {
-            setIsOK(res.data.isOk);
+            const postRes = res.data;
+
+            setIsOK(postRes.isOk);
         }).catch(err => {
             console.log("Password is incorrect");
         })
 
         if(isOK) {
-            navigate('/')
+            window.location.href = '/';
+            window.location.reload();
         } else {
             console.log("Nu a mers bine!")
-            navigate('/')
+            window.location.href = '/';
+            window.location.reload();
         }
     };
 

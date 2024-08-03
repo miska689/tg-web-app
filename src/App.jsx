@@ -72,7 +72,7 @@ const App = () => {
             </div>
         </div>
         </BrowserRouter>
-    ) : (<>{JSON.stringify({status})}</>);
+    ) : (<></>);
 };
 
 
