@@ -8,29 +8,28 @@ import Settings from "./components/Settings/Settings";
 import './App.css'
 import axios from "axios";
 import Register from "./components/Register/Register";
-import {useNavigation} from "react-router-dom";
+import {generateSecretKey, validate} from "./telegramUtils/utils";
 
 const App = () => {
     const [token, setToken] = useState(null);
-
-    const navigation = useNavigate();
+    const [user, setUser] = useState(null);
+    const [isValid, setIsValid] = useState(false);
 
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
 
 
     useEffect( () => {
+        const initData = window.Telegram.WebApp.initDataUnsafe;
+        const telegramBotToken = '7365160249:AAFwBQd3hHr5upOSyHW5B1zDWV6ec7baG5Y';
+        const secretKey = generateSecretKey(telegramBotToken);
 
-        axios.post('https://mytestserver.bot.nu/api/login', {
-            "telegram_user_id": telegram.initDataUnsafe.user?.id,
-            "username": telegram.initDataUnsafe.user?.username
-        }).then(res => {
-            const tok = res.data.token
-            console.log(token)
-            setToken(tok);
-        }).catch(err => {
-            navigation('/register')
-        })
+        if (validate(initData, secretKey)) {
+            setIsValid(true);
+            setUser(initData.user);
+        } else {
+            setIsValid(false);
+        }
 
         themeParams.header_bg_color = "black";
         themeParams.bg_color = "black";
@@ -49,28 +48,34 @@ const App = () => {
     }, []);
 
 
+
     return (
         <BrowserRouter>
-        <div>
-            <div className="App">
-
-                <div className="app-flex">
-                    {/*<div className="div">*/}
-                    {/*    /!*<button onClick={printToken}>LoL</button>*!/*/}
-                    {/*</div>*/}
-                    <div className="app-content">
-                        <Routes>
-                            <Route path="/" element={<Home token={token}/>} />
-                            <Route path="/reg" element={<Regs token={token}/>} />
-                            <Route path="/set" element={<Settings token={token}/>} />
-                            <Route path="/admin" element={<Admin token={token}/>} />
-                            <Route path="/register" element={<Register  token={token}/>} />
-                        </Routes>
-                    </div>
-                    {token ? (<Header></Header>) : (<div></div>)}
-                </div>
+        {/*<div>*/}
+        {/*    <div className="App">*/}
+        {/*            */}
+        {/*        <div className="app-flex">*/}
+        {/*            /!*<div className="div">*!/*/}
+        {/*            /!*    /!*<button onClick={printToken}>LoL</button>*!/*!/*/}
+        {/*            /!*</div>*!/*/}
+        {/*            <div className="app-content">*/}
+        {/*                <Routes>*/}
+        {/*                    <Route path="/" element={<Home token={token}/>} />*/}
+        {/*                    <Route path="/reg" element={<Regs token={token}/>} />*/}
+        {/*                    <Route path="/set" element={<Settings token={token}/>} />*/}
+        {/*                    <Route path="/admin" element={<Admin token={token}/>} />*/}
+        {/*                    <Route path="/register" element={<Register  token={token}/>} />*/}
+        {/*                </Routes>*/}
+        {/*            </div>*/}
+        {/*            {token ? (<Header></Header>) : (<div></div>)}*/}
+        {/*        </div>*/}
+        {/*    </div>*/}
+        {/*</div>*/}
+            <div className="data">
+                {isValid}
+                <br/>
+                {JSON.stringify(user)}
             </div>
-        </div>
         </BrowserRouter>
     );
 };

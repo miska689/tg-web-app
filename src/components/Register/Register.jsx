@@ -7,10 +7,6 @@ import {useNavigate} from "react-router-dom";
 const Register = (props) => {
     const navigation = useNavigate();
 
-    if (props.token){
-        navigation('/')
-    }
-
     const [password, setPassword] = useState('');
 
     const telegram = window.Telegram.WebApp;
