@@ -4,6 +4,11 @@ import './App.css'
 import axios from "axios";
 import UserProfile from "./components/userProfile/userProfile";
 import Register from "./components/Register/Register";
+import Home from "./components/Home/Home";
+import Regs from "./components/Regs/Regs";
+import Settings from "./components/Settings/Settings";
+import Admin from "./components/Admin/Admin";
+import Header from "./components/Header/Header";
 
 const App = () => {
     const [isLogin, setLogin] = useState(false);
@@ -51,9 +56,14 @@ const App = () => {
         <div>
             <div className="App">
                 <div className="app-flex">
+                    {isLogin}
                     <Routes>
-                        <UserProfile/>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/reg" element={<Regs/>}/>
+                        <Route path="/set" element={<Settings/>}/>
+                        <Route path="/admin" element={<Admin/>}/>
                         <Route path="/register" element={<Register/>}/>
+                        <Header></Header>
                     </Routes>
                 </div>
             </div>
