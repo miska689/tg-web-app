@@ -5,10 +5,9 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 const Register = (props) => {
-    const navigation = useNavigate();
-
+    const navigate = useNavigate();
     const [password, setPassword] = useState('');
-
+    const [isOK, setIsOK] = useState(false);
     const telegram = window.Telegram.WebApp;
 
     const user = telegram.initDataUnsafe.user;
@@ -16,20 +15,23 @@ const Register = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(password)
-
         await axios.post('https://mytestserver.bot.nu/api/register', {
             "telegram_user_id": user?.id,
             "telegram_chat_id": user?.id,
             "username": user?.username,
             "adminPassword": password,
         }).then(res => {
-            console.log(res)
-            navigation('/')
+            setIsOK(res.data.isOk);
         }).catch(err => {
             console.log("Password is incorrect");
         })
 
+        if(isOK) {
+            navigate('/')
+        } else {
+            console.log("Nu a mers bine!")
+            navigate('/')
+        }
     };
 
     return (
