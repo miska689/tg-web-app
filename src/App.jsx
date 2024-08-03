@@ -18,11 +18,14 @@ const App = () => {
     const user = telegram.initDataUnsafe.user;
 
     useEffect( () => {
-        axios.defaults.headers.common['Telegram-Data'] = window?.Telegram?.WebApp?.initData;
-
+        // axios.defaults.headers.common['Telegram-Data'] = window?.Telegram?.WebApp?.initData;
         axios.post('https://mytestserver.bot.nu/api/login', {
             "telegram_user_id": user?.id,
             "username": user?.username,
+        }, {
+            headers: {
+                'Telegram-Data': window?.Telegram?.WebApp?.initData
+            }
         }).then(res => {
             const postRes = res.data;
             const postStatus = res.status;

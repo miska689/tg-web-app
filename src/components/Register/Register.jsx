@@ -20,6 +20,10 @@ const Register = (props) => {
             "telegram_chat_id": user?.id,
             "username": user?.username,
             "adminPassword": password,
+        }, {
+            headers: {
+                'Telegram-Data': window?.Telegram?.WebApp?.initData
+            }
         }).then(res => {
             const postRes = res.data;
 
