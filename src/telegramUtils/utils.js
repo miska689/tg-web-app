@@ -10,7 +10,7 @@ const validate = (initData, secretKey) => {
         .sort()
         .map(key => `${key}=${typeof data[key] === 'object' ? JSON.stringify(data[key]) : data[key]}`)
         .join('\n');
-    const dataCheck = CryptoJS.HmacSHA256(sortedData, secretKey).toString();
+    const dataCheck = CryptoJS.HmacSHA256(sortedData, secretKey).toString(CryptoJS.enc.Hex);
     console.log(sortedData);
     console.log(dataCheck)
     console.log(hash)
