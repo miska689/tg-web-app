@@ -52,7 +52,7 @@ const App = () => {
             <div className="App">
                 <div className="app-flex">
                     <Routes>
-                        <Route path="/" element={isLogin ? <UserProfile /> : <Navigate to="/register" replace/>} />
+                        <UserProfile/>
                         <Route path="/register" element={<Register/>}/>
                     </Routes>
                 </div>
