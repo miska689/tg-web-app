@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, json, Navigate, Route, Routes} from "react-router-dom";
 import './App.css'
 import axios from "axios";
 import UserProfile from "./components/userProfile/userProfile";
@@ -45,7 +45,6 @@ const App = () => {
         }
 
 
-
         telegram.setHeaderColor("#000");
         telegram.ready()
     }, []);
@@ -56,15 +55,15 @@ const App = () => {
         <div>
             <div className="App">
                 <div className="app-flex">
-                    {isLogin}
+                    { JSON.stringify({isLogin}) }
                     <Routes>
-                        <Route path="/" element={<Home/>}/>
-                        <Route path="/reg" element={<Regs/>}/>
-                        <Route path="/set" element={<Settings/>}/>
-                        <Route path="/admin" element={<Admin/>}/>
-                        <Route path="/register" element={<Register/>}/>
+                        <Route path="/" element={isLogin ? <Home/> : <Navigate to={'/register'}/>}/>
+                        <Route path="/reg" element={isLogin ? <Regs/> : <Navigate to={'/register'}/>}/>
+                        <Route path="/set" element={isLogin ? <Settings/> : <Navigate to={'/register'}/>}/>
+                        <Route path="/admin" element={isLogin ? <Admin/> : <Navigate to={'/register'}/>}/>
+                        <Route path="/register" element={isLogin ? <Navigate to={'/'}/> : <Register/> }/>
                     </Routes>
-                    <Header></Header>
+                    {isLogin ? (<Header></Header>) : (<></>)}
                 </div>
             </div>
         </div>

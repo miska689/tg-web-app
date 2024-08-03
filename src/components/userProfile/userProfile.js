@@ -5,17 +5,10 @@ import Regs from "../Regs/Regs";
 import Settings from "../Settings/Settings";
 import Admin from "../Admin/Admin";
 import Header from "../Header/Header";
+import Register from "../Register/Register";
 
 const UserProfile = () => {
-    return (
-        <div className="app-content">
-            <Route path="/" element={<Home/>}/>
-            <Route path="/reg" element={<Regs/>}/>
-            <Route path="/set" element={<Settings/>}/>
-            <Route path="/admin" element={<Admin/>}/>
-            <Header></Header>
-        </div>
-    );
+
 };
 
 export default UserProfile;
