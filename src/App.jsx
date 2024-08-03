@@ -11,8 +11,8 @@ import Admin from "./components/Admin/Admin";
 import Header from "./components/Header/Header";
 
 const App = () => {
-    const [isLogin, setLogin] = useState(false);
-
+    const [isLogin, setLogin] = useState(null);
+    const [status, setStaus] = useState(1)
     const telegram = window.Telegram.WebApp;
     const themeParams = telegram.themeParams;
     const user = telegram.initDataUnsafe.user;
@@ -25,7 +25,7 @@ const App = () => {
             "username": user?.username,
         }).then(res => {
             const postRes = res.data;
-
+            setStaus(res.status)
             setLogin(postRes.isOk)
         }).catch(err => {
             console.log("Inregistrativa!");
@@ -50,7 +50,7 @@ const App = () => {
     }, []);
 
 
-    return (
+    return (status > 200 && status < 499) ? (
         <BrowserRouter>
         <div>
             <div className="App">
@@ -68,7 +68,7 @@ const App = () => {
             </div>
         </div>
         </BrowserRouter>
-    );
+    ) : (<></>);
 };
 
 export default App;
