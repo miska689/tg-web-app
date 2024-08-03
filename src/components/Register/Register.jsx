@@ -25,7 +25,7 @@ const Register = (props) => {
             console.log(res)
             navigation('/')
         }).catch(err => {
-            console.log(err)
+            console.log("Password is incorrect");
         })
 
     };

@@ -9,12 +9,10 @@ import Header from "../Header/Header";
 const UserProfile = () => {
     return (
         <div className="app-content">
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/reg" element={<Regs/>}/>
-                <Route path="/set" element={<Settings/>}/>
-                <Route path="/admin" element={<Admin/>}/>
-            </Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/reg" element={<Regs/>}/>
+            <Route path="/set" element={<Settings/>}/>
+            <Route path="/admin" element={<Admin/>}/>
             <Header></Header>
         </div>
     );

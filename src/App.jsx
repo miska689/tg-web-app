@@ -3,6 +3,7 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import './App.css'
 import axios from "axios";
 import UserProfile from "./components/userProfile/userProfile";
+import Register from "./components/Register/Register";
 
 const App = () => {
     const [isLogin, setLogin] = useState(false);
@@ -52,6 +53,7 @@ const App = () => {
                 <div className="app-flex">
                     <Routes>
                         <Route path="/" element={isLogin ? <UserProfile /> : <Navigate to="/register" replace/>} />
+                        <Route path="/register" element={<Register/>}/>
                     </Routes>
                 </div>
             </div>
