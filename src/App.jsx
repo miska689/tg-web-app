@@ -25,6 +25,7 @@ const App = () => {
             "username": user?.username,
         }).then(res => {
             const postRes = res.data;
+            console.log(res);
             setStaus(res.status)
             setLogin(postRes.isOk)
         }).catch(err => {
@@ -70,5 +71,6 @@ const App = () => {
         </BrowserRouter>
     ) : (<></>);
 };
+
 
 export default App;
