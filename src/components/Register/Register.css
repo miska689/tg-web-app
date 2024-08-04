@@ -33,6 +33,10 @@
     height: 120px;
     background-color: #fdfdfd;
     border-radius: 50%;
+    background-image: url("https://api.telegram.org/file/bot7365160249:AAFwBQd3hHr5upOSyHW5B1zDWV6ec7baG5Y/photos/file_0.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .form-reg{
@@ -82,4 +86,6 @@
     font-style: normal;
     color: white;
 }
+
+
 
