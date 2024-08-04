@@ -75,7 +75,9 @@ const App = () => {
             </div>
         </div>
         </BrowserRouter>
-    ) : (<></>);
+    ) : (<>
+        <div className="loader"></div>
+    </>);
 };
 
 
