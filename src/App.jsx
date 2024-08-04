@@ -76,8 +76,10 @@ const App = () => {
         </div>
         </BrowserRouter>
     ) : (<>
-        <div className="loader"></div>
-    </>);
+        <div className="loading">
+            <div className="loader"></div>
+        </div>
+        </>);
 };
 
 
